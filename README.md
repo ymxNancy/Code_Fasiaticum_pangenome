@@ -1,2 +1,4 @@
-# Code_Fasiaticum_pangenome
-Code of F. asiaticum pangenome analysis
+# Population genomics of F. asiaticum
+
+
+These are the scripts that I have written to perform the population genomics of F. asiaticum using 245 genomes.
