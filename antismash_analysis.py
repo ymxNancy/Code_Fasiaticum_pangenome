@@ -33,7 +33,3 @@ if __name__ == '__main__':
     pool = Pool(7)
     antismash_analysis = pool.map(parse_antismash, getted_name_list)
 
-
-# screen -L /home/yangmeixin/asiaticum/antismash_analysis.py /home/yangmeixin/asiaticum/strain_names_245.txt
-# /home/yangmeixin/asiaticum/antismash_analysis.py /home/yangmeixin/asiaticum/test_genome_names.txt
-
