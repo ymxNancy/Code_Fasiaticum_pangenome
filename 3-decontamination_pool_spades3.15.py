@@ -4,15 +4,6 @@
 import subprocess, os
 from multiprocessing import Pool
 
-'''
-base env 
-
-nt_faref (blast database name): nt combined with 180197
-
-fa_210_sidr_filter_genomes_spades3.15_nt: not include 180197 when perform blast
-
-'''
-
 from sys import argv
 
 def build_index(sequence_fas_name):
@@ -134,10 +125,6 @@ if __name__ == "__main__":
 
     pool = Pool(15)
     pool.map(main, strain_list)
-
-# work place: /home/zhanghao/asiaticum
-# command line: ./decontamination_pool_spades3.15.py list_modified_140028.txt fa_210_name_140028.txt
-
 
 
 
