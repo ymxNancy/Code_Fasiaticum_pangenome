@@ -4,22 +4,6 @@
 import subprocess
 from multiprocessing import Pool
 
-'''
-work dictionary: /home/zhanghao/asiaticum/call_snp_220409
-
-before running, motify ulimit -u 31308 or larger
-command line: screen -L python3 bin/call_snp.py
-
-use docker run gatk: 
-    1. docker run -it -u $(id -u):$(id -u) -v /home/zhanghao/asiaticum/call_snp_220409:/gatk_wd broadinstitute/gatk:latest bash
-    2. docker run -it -u $(id -u):$(id -u) -v /home/zhanghao/asiaticum/call_snp_220409:/gatk_wd broadinstitute/gatk:latest bash
-
-    docker run --rm -u $(id -u):$(id -u) -v /home/zhanghao/asiaticum/call_snp_220409:/gatk_wd -w /gatk_wd broadinstitute/gatk:latest gatk --java-options '-Xmx4g' GenomicsDBImport --genomicsdb-workspace-path my_database -R 180197_pilon4.fas -L intervals.list --sample-name-map output/input.list.test
-
-PH-1 Illumina data download from: https://trace.ncbi.nlm.nih.gov/Traces/index.html?view=run_browser&acc=SRR15032575&display=download
-
-'''
-
 def prepare_ref(ref_fa):
     subprocess.call("bwa-mem2 index {}".format(ref_fa), shell=True)
     print('generate reference index successfully')
@@ -80,13 +64,7 @@ def generate_vcf():
 if __name__ == '__main__':
     ref_fa_file = '180197_pilon4_nomt_masked.fas'
 # add outgroup do not need to re do this step:
-#     prepared_ref = prepare_ref(ref_fa_file)
-
-# 1st use HN9-1:
-#    strain_name_file = '/home/zhanghao/asiaticum/qc_name_outgroup.txt'
-#    pool = Pool(41)
-#    pool.map(get_vcf, generated_strain_list)
-
+    prepared_ref = prepare_ref(ref_fa_file)
 
 # 2nd time replace HN9-1 by PH-1:
 #    strain_name_file = '/home/zhanghao/asiaticum/qc_name_outgroup_ph1.txt'
@@ -95,11 +73,8 @@ if __name__ == '__main__':
 #    pool.map(get_vcf, generated_strain_list)
 
     generated_vcf = generate_vcf()
-
-
-
-
-# CombineGVCFs --variant file name must be vcf.list
+    
+ CombineGVCFs --variant file name must be vcf.list
 
 # Then using vcfR filter the DP, using vcf_filter.R script in R.
 # Generate file: fa_com_snp_filtered_outgroup_gatk_vcfR.vcf
@@ -109,4 +84,3 @@ if __name__ == '__main__':
 #generate file: fa_com_snp_filtered_outgroup_gatk_vcfR_vcftools.recode.vcf
 
 # vcftools --vcf fa_com_snp_filtered_outgroup_gatk_vcfR_noasterisk.vcf  --max-missing 1.0 --recode --recode-INFO-all --out fa_com_snp_filtered_outgroup_gatk_vcfR_noasterisk_maxmissing1
-
