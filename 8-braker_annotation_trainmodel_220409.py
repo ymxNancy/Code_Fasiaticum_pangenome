@@ -1,17 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-
-'''
-conda activate braker2
-
-genomes folder (246: include 140020, SRR2466519, 180197): /home/yangmeixin/asiaticum/soft_masked_genomes_220405/140001_ordered_soft.fas
-
-bam folders (245, include 140020, 180197, not include SRR2466519): /home/yangmeixin/asiaticum/RNAseq_alignment_220405/140001-hisat2.sorted.bam
-
-'''
-
-
 import subprocess
 from sys import argv
 from multiprocessing import Pool
@@ -45,7 +34,3 @@ if __name__ == '__main__':
     #annotate = conduct_annotation(list_name)
     pool.map(conduct_annotation, list_name)
     
-
-# work dictionary: /home/yangmeixin/asiaticum/annotations_braker_220409
-# command line: screen -L python ../braker_annotation_220409.py strain_names_244.txt
-# command line: screen -L python ../braker_annotation_220409.py ../strain_name_140028.txt
