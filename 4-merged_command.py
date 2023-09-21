@@ -36,6 +36,3 @@ if __name__ == '__main__':
     name_file = argv[1]
     getted_strain_name = get_strain_name(name_file)
     filtering_genome = parse_command(getted_strain_name)
-
-
-# ./merged_command.py strain_name_170347.txt
