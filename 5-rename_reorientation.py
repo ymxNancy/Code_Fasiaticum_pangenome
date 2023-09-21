@@ -67,7 +67,3 @@ if __name__ == '__main__':
         getted_original_contig_dir = get_original_contig_dir(strain_name)
         getted_ordered_contig_file = get_ordered_contig_file(strain_name, getted_original_contig_dir)
 
-
-# under reordering_genomes file: screen -L ../rename_reorientation.py ../strain_name.txt
-# 140028: need to change the strain name to Fmer_
-
